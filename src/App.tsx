@@ -4,6 +4,7 @@ import { IPDetails } from "./components/IPDetails";
 import { fetchIpInfo } from "./services/ip";
 import { IPInfo } from "./types";
 import { LocationMap } from "./components/LocationMap";
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
@@ -68,6 +69,7 @@ function App() {
           </div>
         )}
       </div>
+      <Analytics/>
     </div>
   );
 }
