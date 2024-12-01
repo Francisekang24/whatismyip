@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { IPLookUpForm } from "./components/IPLookUpForm";
 import { IPDetails } from "./components/IPDetails";
 import { fetchIpInfo } from "./services/ip";
-import { IPInfo } from "./types";
+import { DeviceInfo, IPInfo } from "./types";
 import { LocationMap } from "./components/LocationMap";
 import { Analytics } from "@vercel/analytics/react"
+import { getDeviceInfo } from "./utils/device";
 
 function App() {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
+  const [deviceInfo] = useState<DeviceInfo>(getDeviceInfo());
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
@@ -17,6 +19,7 @@ function App() {
       setErr(null);
       const data = await fetchIpInfo(ip);
       setIpInfo(data);
+      console.log(data);
     } catch (err) {
       if (err instanceof Error) {
         setErr(err.message);
@@ -49,12 +52,7 @@ function App() {
           <div className="mt-6">
             <IPDetails
               ipinfo={ipInfo}
-              deviceInfo={{
-                os: "Windows",
-                browser: "Chrome",
-                device: "Desktop",
-                deviceIcon: "desktop-icon",
-              }}
+              deviceInfo={deviceInfo}
             />
           </div>
         )}

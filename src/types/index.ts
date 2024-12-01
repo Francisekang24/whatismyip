@@ -32,5 +32,4 @@ export interface DeviceInfo {
     browser: string;
     os: string;
     device: string;
-    deviceIcon: string;
 }
