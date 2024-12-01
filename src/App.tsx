@@ -10,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
-  const loadInfo = async (ip?: string) => {
+  const loadInfo = async (ip: string = "") => {
     try {
       setLoading(true);
       setErr(null);
